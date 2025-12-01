@@ -1,7 +1,7 @@
-2024: Python / Jupyter Notebook
-2025: Rust
+In progress:
+- 2024: Python
+- 2025: Rust
 
-I plan to do the previous years in different coding languages.
-
-2022: OCaml
-2023: C++
+Planned
+- 2022: OCaml
+- 2023: C++
