@@ -1,0 +1,12 @@
+[package]
+name = "aoc2025"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "day1_p1"
+path = "src/bin/day1/day1_p1.rs"
+
+[[bin]]
+name = "day1_p2"
+path = "src/bin/day1/day1_p2.rs"
