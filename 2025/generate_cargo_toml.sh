@@ -5,12 +5,25 @@
 
 CARGO_TOML="Cargo.toml"
 TEMP_FILE=$(mktemp)
+DEPS_FILE=$(mktemp)
 
-# Read the package section (everything before [[bin]])
-awk '/^\[\[bin\]\]/ {exit} {print}' "$CARGO_TOML" > "$TEMP_FILE"
-# Remove trailing blank lines - keep only non-blank lines and the last line if it's blank after content
+# Extract [package] section (everything before [[bin]] or [dependencies])
+awk '/^\[\[bin\]\]/ || /^\[dependencies\]/ {exit} {print}' "$CARGO_TOML" > "$TEMP_FILE"
+
+# Extract [dependencies] section if it exists (handles it being anywhere in the file)
+awk '/^\[dependencies\]/{found=1} found{if(/^\[/ && !/^\[dependencies\]/){exit}; print}' "$CARGO_TOML" > "$DEPS_FILE"
+
+# Remove trailing blank lines from package section
 sed -i.bak -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$TEMP_FILE" 2>/dev/null || \
 { awk '{if (NF || !blank_seen) {if (NF) blank_seen=0; else blank_seen=1; print}}' "$TEMP_FILE" > "${TEMP_FILE}.tmp" && mv "${TEMP_FILE}.tmp" "$TEMP_FILE"; }
+
+# Add dependencies section if it exists
+if [ -s "$DEPS_FILE" ]; then
+    echo "" >> "$TEMP_FILE"
+    cat "$DEPS_FILE" >> "$TEMP_FILE"
+fi
+rm -f "$DEPS_FILE"
+
 # Add exactly one blank line before bin entries
 echo "" >> "$TEMP_FILE"
 
