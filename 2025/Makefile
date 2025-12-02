@@ -1,8 +1,9 @@
-.PHONY: help update-toml build run run-debug clean test all-days
+.PHONY: help update-toml build run run-debug clean test all-days generate
 
 # Default target
 help:
 	@echo "Available commands:"
+	@echo "  make generate X   - Generate a new day folder (e.g., make generate 3)"
 	@echo "  make update-toml  - Update Cargo.toml with all binary entries"
 	@echo "  make build        - Build all binaries"
 	@echo "  make run X.Y      - Run a specific day (e.g., make run 1.1 or make run 2.2)"
@@ -15,6 +16,32 @@ help:
 update-toml:
 	@echo "Updating Cargo.toml..."
 	@./generate_cargo_toml.sh
+
+# Generate a new day folder with template files
+generate:
+	@if [ -z "$(ARGS)" ]; then \
+		echo "Error: Day not specified. Usage: make generate 3"; \
+		exit 1; \
+	fi; \
+	DAY_DIR="src/bin/day$(ARGS)"; \
+	if [ -d "$$DAY_DIR" ]; then \
+		echo "Error: $$DAY_DIR already exists"; \
+		exit 1; \
+	fi; \
+	echo "Creating $$DAY_DIR..."; \
+	mkdir -p "$$DAY_DIR"; \
+	touch "$$DAY_DIR/data.txt"; \
+	touch "$$DAY_DIR/data_ex.txt"; \
+	echo 'use std::fs;' > "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	echo '' >> "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	echo 'fn main() {' >> "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	echo '    let contents = fs::read_to_string("src/bin/day$(ARGS)/data_ex.txt")' >> "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	echo '        .expect("Should have been able to read the file");' >> "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	echo '' >> "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	echo '    println!("{}", contents);' >> "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	echo '}' >> "$$DAY_DIR/day$(ARGS)_p1.rs"; \
+	cp "$$DAY_DIR/day$(ARGS)_p1.rs" "$$DAY_DIR/day$(ARGS)_p2.rs"; \
+	echo "Created $$DAY_DIR with template files"
 
 # Build all binaries
 build: update-toml
