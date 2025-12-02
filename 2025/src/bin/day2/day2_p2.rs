@@ -71,7 +71,6 @@ fn main() {
     for num in invalid.iter() {
         sum += num
     }
-    println!("{:?}", invalid);
     println!("{}", sum)
 }
 
