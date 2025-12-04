@@ -5,6 +5,8 @@ edition = "2021"
 
 [dependencies]
 counter = "0.7.0"
+min-max-heap = "1.3.0"
+mut-binary-heap = "0.1.0"
 
 [[bin]]
 name = "day1_p1"
@@ -21,3 +23,11 @@ path = "src/bin/day2/day2_p1.rs"
 [[bin]]
 name = "day2_p2"
 path = "src/bin/day2/day2_p2.rs"
+
+[[bin]]
+name = "day3_p1"
+path = "src/bin/day3/day3_p1.rs"
+
+[[bin]]
+name = "day3_p2"
+path = "src/bin/day3/day3_p2.rs"
