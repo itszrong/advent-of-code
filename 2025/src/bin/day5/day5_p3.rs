@@ -5,7 +5,7 @@ fn main() {
         .expect("Should have been able to read the file");
 
     let mut fresh = 0;
-    let ranges_block = contents.split("\n\n").collect::<Vec<&str>>()[0];
+    let (ranges_block, _) = contents.split_once("\n\n").unwrap();
     let mut ranges: Vec<(i64, i64)> = ranges_block
         .lines()
         .filter(|line| !line.trim().is_empty())
