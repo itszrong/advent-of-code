@@ -15,7 +15,7 @@ fn main() {
         let end = start_end[1].parse::<i64>().unwrap().clone();
         ranges_heap.push((-start, -end));
     };
-    // println!("{:?}", ranges_heap);
+
     let mut prev = (-1, -1);
     while !ranges_heap.is_empty() {
         let mut curr = ranges_heap.pop().unwrap();
