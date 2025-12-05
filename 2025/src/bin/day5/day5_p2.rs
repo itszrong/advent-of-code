@@ -11,8 +11,8 @@ fn main() {
     let ranges = components[0];
     for range in ranges.lines() {
         let start_end = range.split('-').collect::<Vec<&str>>();
-        let start = start_end[0].parse::<i64>().unwrap().clone();
-        let end = start_end[1].parse::<i64>().unwrap().clone();
+        let start = start_end[0].parse::<i64>().unwrap();
+        let end = start_end[1].parse::<i64>().unwrap();
         ranges_heap.push((-start, -end));
     };
 
@@ -26,7 +26,7 @@ fn main() {
         }
         if curr.0 <= curr.1 {
             fresh += curr.1-curr.0+1;
-            prev = curr.clone();
+            prev = curr;
         }
     }
     
