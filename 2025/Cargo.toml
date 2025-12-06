@@ -51,3 +51,11 @@ path = "src/bin/day5/day5_p2.rs"
 [[bin]]
 name = "day5_p3"
 path = "src/bin/day5/day5_p3.rs"
+
+[[bin]]
+name = "day6_p1"
+path = "src/bin/day6/day6_p1.rs"
+
+[[bin]]
+name = "day6_p2"
+path = "src/bin/day6/day6_p2.rs"
