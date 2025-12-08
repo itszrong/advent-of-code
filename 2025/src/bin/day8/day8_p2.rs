@@ -36,13 +36,12 @@ fn main() {
             min_distances.push(Reverse((OrderedFloat(distance), i, j)));
         }
     }
-    let mut min_distances_clone = min_distances.clone();
-
+    
     let mut pair: (OrderedFloat<f64>, usize, usize) = (OrderedFloat(0.0), 0, 0);
     let mut run = true;
     while run {
         let mut visited: BTreeSet<usize> = BTreeSet::new();
-        pair = min_distances_clone.pop().unwrap().0;
+        pair = min_distances.pop().unwrap().0;
         graph.entry(pair.1).or_insert(Vec::new()).push(pair.2);
         graph.entry(pair.2).or_insert(Vec::new()).push(pair.1);
         visited = dfs(0, visited, &graph);
