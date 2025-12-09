@@ -1,4 +1,4 @@
-.PHONY: help update-toml build run run-debug clean test all-days generate
+.PHONY: help update-toml build run run-timed run-debug clean test all-days generate
 
 # Default target
 help:
@@ -6,7 +6,8 @@ help:
 	@echo "  make generate X   - Generate a new day folder (e.g., make generate 3)"
 	@echo "  make update-toml  - Update Cargo.toml with all binary entries"
 	@echo "  make build        - Build all binaries"
-	@echo "  make run X.Y      - Run a specific day (e.g., make run 1.1 or make run 2.2)"
+	@echo "  make run X.Y      - Run a specific day with timing (e.g., make run 1.1 or make run 2.2)"
+	@echo "  make run-timed X.Y - Run a specific day with timing"
 	@echo "  make run-debug X.Y - Run a specific day in debug mode"
 	@echo "  make clean        - Clean build artifacts"
 	@echo "  make test         - Run tests"
@@ -78,6 +79,19 @@ run: update-toml
 	fi; \
 	echo "Running $(BIN_NAME)..."; \
 	cargo run --release --bin $(BIN_NAME)
+
+# Run in release mode - supports make run-release 1.1 or make run-release 2.2
+run-timed: update-toml
+	@if [ -z "$(ARGS)" ]; then \
+		echo "Error: Day not specified. Usage: make run-release 1.1 or make run-release 2.2"; \
+		exit 1; \
+	fi; \
+	if [ -z "$(DAY_NUM)" ] || [ -z "$(PART_NUM)" ]; then \
+		echo "Error: Invalid format. Use DAY.PART (e.g., make run-release 1.1 or make run-release 2.2)"; \
+		exit 1; \
+	fi; \
+	echo "Running $(BIN_NAME) (release)..."; \
+	time cargo run --release --bin $(BIN_NAME)
 
 # Run in debug mode - supports make run-debug 1.1 or make run-debug 2.2
 run-debug: update-toml
