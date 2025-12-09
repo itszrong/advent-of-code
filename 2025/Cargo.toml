@@ -80,3 +80,7 @@ path = "src/bin/day8/day8_p1.rs"
 [[bin]]
 name = "day8_p2"
 path = "src/bin/day8/day8_p2.rs"
+
+[[bin]]
+name = "day8_p3"
+path = "src/bin/day8/day8_p3.rs"
