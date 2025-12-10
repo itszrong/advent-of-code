@@ -1,6 +1,8 @@
-.PHONY: help update-toml build run run-timed run-debug clean test all-days generate
+.PHONY: all help update-toml build run run-timed run-debug clean test all-days generate
 
 # Default target
+all: help
+
 help:
 	@echo "Available commands:"
 	@echo "  make generate X   - Generate a new day folder (e.g., make generate 3)"
