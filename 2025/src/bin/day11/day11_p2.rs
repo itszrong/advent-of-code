@@ -41,18 +41,11 @@ fn main() {
     }
 
     let paths_svr_dac = path_find(&graph, "svr", "dac", &["fft", "out"]);
-    println!("{:?}", paths_svr_dac);
     let paths_dac_fft = path_find(&graph, "dac", "fft", &["out", "svr"]);
-    println!("{:?}", paths_dac_fft);
     let paths_fft_out = path_find(&graph, "fft", "out", &["dac", "svr"]);
-    println!("{:?}", paths_fft_out);
-
     let paths_svr_fft = path_find(&graph, "svr", "fft", &["dac", "out"]);
-    println!("{:?}", paths_svr_fft);
     let paths_fft_dac = path_find(&graph, "fft", "dac", &["out", "svr"]);
-    println!("{:?}", paths_fft_dac);
     let paths_dac_out = path_find(&graph, "dac", "out", &["fft", "svr"]);
-    println!("{:?}", paths_dac_out);
     
     println!("{:?}", paths_svr_dac * paths_dac_fft * paths_fft_out + paths_svr_fft * paths_fft_dac * paths_dac_out);
 }
