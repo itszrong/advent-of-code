@@ -35,6 +35,18 @@ name = "day10_p2"
 path = "src/bin/day10/day10_p2.rs"
 
 [[bin]]
+name = "day11_p1"
+path = "src/bin/day11/day11_p1.rs"
+
+[[bin]]
+name = "day11_p2_slow"
+path = "src/bin/day11/day11_p2_slow.rs"
+
+[[bin]]
+name = "day11_p2"
+path = "src/bin/day11/day11_p2.rs"
+
+[[bin]]
 name = "day2_p1"
 path = "src/bin/day2/day2_p1.rs"
 
