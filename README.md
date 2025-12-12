@@ -1,6 +1,8 @@
+Completed:
+- 2025: Rust
+
 In progress:
 - 2024: Python
-- 2025: Rust
 
 Planned
 - 2021: Java
