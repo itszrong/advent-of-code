@@ -55,7 +55,7 @@ generate:
 	echo 'public class Day$(ARGS)P1 {' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \
 	echo '    public static void main(String[] args) {' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \
 	echo '        try {' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \
-	echo '            File file = new File("day$(ARGS)/data_ex.txt");' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \
+	echo '            File file = new File("data_ex.txt");' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \
 	echo '            Scanner scanner = new Scanner(file);' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \
 	echo '' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \
 	echo '            while (scanner.hasNextLine()) {' >> "$$DAY_DIR/Day$(ARGS)P1.java"; \

@@ -4,7 +4,7 @@ import java.util.*;
 public class Day1P1 {
     public static void main(String[] args) {
         try {
-            File file = new File("day1/data_ex.txt");
+            File file = new File("data_ex.txt");
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) {
