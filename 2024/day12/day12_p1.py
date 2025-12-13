@@ -2,7 +2,7 @@ import re
 import numpy as np
 from collections import deque, defaultdict
 
-input = open("data.txt", "r").read()
+input = open("day12/data.txt", "r").read()
 
 def region(input):
 
@@ -52,7 +52,6 @@ def region(input):
             points.append((i,j))
             area = len(points)
             perimeter = calcPerimeter(points)
-            # print(data[i][j], area, perimeter, "coord:", (i, j), "price", area*perimeter)
             total += area*perimeter
 
     return total

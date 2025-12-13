@@ -1,4 +1,4 @@
-input = open("data.txt", "r").read()
+input = open("day12/data.txt", "r").read()
 
 def region(input):
 
@@ -27,74 +27,52 @@ def region(input):
 
     def calcSides(points):
 
-        dirs = [(1,0),(-1,0),(0,1),(0,-1)]
-        x_buffer = []
-        y_buffer = []
-        for i, j in points:
-            for dx, dy in dirs:
-                new_i, new_j = i+dx, j+dy
-                if -1 <= new_i < rows+1 and -1 <= new_j < cols+1:
-                    if (new_i, new_j) not in points:
-                        if dx != 0:
-                            x_buffer.append((new_i, new_j))
-                        else:
-                            y_buffer.append((new_j, new_i))
+        dirs = [(1,0), (-1,0), (0, 1), (0, -1)]
+        x_boundary_edges_bottom = []
+        x_boundary_edges_top = []
+        y_boundary_edges_left = []
+        y_boundary_edges_right = []
+        for (i, j) in points:
+            for (dx, dy) in dirs:
+                if (i+dx, j+dy) not in points:
+                    if dx == -1:
+                        x_boundary_edges_bottom.append((i, j))
+                    if dx == 1:
+                        x_boundary_edges_top.append((i, j))
+                    if dy == -1:
+                        y_boundary_edges_left.append((j, i))
+                    if dy == 1:
+                        y_boundary_edges_right.append((j, i))
 
-        x_buffer.sort()
-        y_buffer.sort()
 
-        # print(data[points[0][0]][points[0][1]], x_buffer)
-        # print(data[points[0][0]][points[0][1]], y_buffer)
+        x_boundary_edges_bottom.sort()
+        x_boundary_edges_top.sort()
+        y_boundary_edges_left.sort()
+        y_boundary_edges_right.sort()
 
-        def get_sides(buffer):
-            sides = 0
-            prev = (-10, -10)
-            duplicates = []
-            if not buffer:
-                return 0, []
-            for i, j in buffer:
+        def sides_boundary_edges(boundary_edges):
+            if not boundary_edges:
+                return 0
+            prev, sides = None, 0
+            for (i, j) in boundary_edges:
+                if prev is None:
+                    sides += 1
+                    prev = (i, j)
+                    continue
                 if i == prev[0]:
-                    if j == prev[1]:
-                        duplicates.append((i,j))
-                        # continue
-                    if abs(j-prev[1]) != 1:
+                    if j-prev[1] > 1:
                         sides += 1
                 else:
                     sides += 1
                 prev = (i, j)
-            return sides, duplicates
+            return sides
 
-        x_sides, x_duplicates = get_sides(x_buffer)
-        y_sides, y_duplicates = get_sides(y_buffer)
+        x_sides_bottom = sides_boundary_edges(x_boundary_edges_bottom)
+        x_sides_top = sides_boundary_edges(x_boundary_edges_top)
+        y_sides_left = sides_boundary_edges(y_boundary_edges_left)
+        y_sides_right = sides_boundary_edges(y_boundary_edges_right)
 
-        # print(x_duplicates)
-        # print(y_duplicates)
-        
-        x_dup_sides, _ = get_sides(x_duplicates)
-        y_dup_sides, _ = get_sides(y_duplicates)
-
-
-        vis = []
-        for i in range(-1, rows+1, 1):
-            vis_sub = []
-            for j in range(-1, cols+1, 1):
-                if (i, j) in x_buffer or (j, i) in y_buffer:
-                    vis_sub.append("*")
-                elif (i, j) in points:
-                    vis_sub.append(data[i][j])
-                else:
-                    vis_sub.append(" ")
-            vis.append(vis_sub)
-
-        x_sides = x_sides+x_dup_sides-len(x_duplicates)
-        x_sides = y_sides+y_dup_sides-len(y_duplicates)
-        sides = x_sides+y_sides
-        print(sides, x_sides, y_sides, x_dup_sides, y_dup_sides)
-        for row in vis:
-            if any(el != " " for el in row):
-                print("".join(row))
-
-        return sides
+        return x_sides_bottom+x_sides_top+y_sides_left+y_sides_right
 
     total = 0
     for i in range(rows):
@@ -106,7 +84,6 @@ def region(input):
             points.append((i,j))
             area = len(points)
             sides = calcSides(points)
-            # print(data[i][j], area, sides, "coord:", (i, j), "price", area*sides)
             total += area*sides
 
     return total
