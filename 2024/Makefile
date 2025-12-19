@@ -40,7 +40,7 @@ generate:
 
 # Get arguments passed to make (everything after the target)
 ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-$(eval $(ARGS):;@:)
+$(eval $(ARGS):;@:)  # Commented out - causes FUNCNEST issues in zsh
 
 # Parse day.part format using Make functions
 DAY_NUM := $(word 1,$(subst ., ,$(ARGS)))
