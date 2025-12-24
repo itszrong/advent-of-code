@@ -2,7 +2,7 @@
 
 # Compiler settings
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra
+CXXFLAGS := -std=c++20 -Wall -Wextra
 RELEASE_FLAGS := -O3
 DEBUG_FLAGS := -g
 
