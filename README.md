@@ -1,10 +1,10 @@
 Completed:
 - 2025: Rust
-
-In progress:
 - 2024: Python
 
-Planned
+In progress:
 - 2023: C++
+
+Planned
 - 2022: OCaml
 - 2021: Java
