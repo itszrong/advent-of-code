@@ -2,7 +2,7 @@
 
 # Compiler settings
 CXX := g++
-CXXFLAGS := -std=c++20 -Wall -Wextra
+CXXFLAGS := -std=c++20 -Wall -Wextra -I/opt/homebrew/opt/boost/include
 RELEASE_FLAGS := -O3
 DEBUG_FLAGS := -g
 
