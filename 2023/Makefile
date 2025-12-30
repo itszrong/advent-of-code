@@ -40,17 +40,18 @@ generate:
 	echo '#include <iostream>' > "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '#include <fstream>' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '#include <string>' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
+	echo 'using namespace std;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo 'int main() {' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
-	echo '    std::ifstream file("day$(ARGS)/data_ex.txt");' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
+	echo '    ifstream file("day$(ARGS)/data_ex.txt");' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '    if (!file.is_open()) {' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
-	echo '        std::cerr << "Error opening file" << std::endl;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
+	echo '        cerr << "Error opening file" << endl;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '        return 1;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '    }' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
-	echo '    std::string line;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
-	echo '    while (std::getline(file, line)) {' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
-	echo '        std::cout << line << std::endl;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
+	echo '    string line;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
+	echo '    while (getline(file, line)) {' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
+	echo '        cout << line << endl;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '    }' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
 	echo '    return 0;' >> "$$DAY_DIR/day$(ARGS)_p1.cpp"; \
