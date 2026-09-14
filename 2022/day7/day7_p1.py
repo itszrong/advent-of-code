@@ -47,7 +47,6 @@ def main():
         for i in graph[pos]:
             res += int(i)
         return str(res)
-
     
     _ = dfs(graph, start)
 
