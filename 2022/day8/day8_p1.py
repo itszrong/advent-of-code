@@ -9,7 +9,6 @@ def main():
     mask = [[0 for i in range(len(grid[0]))] for j in range(len(grid))]
 
     # horizontal looks left
-    int_count = 0
     p1_start, p2_start, increment = 0, 1, 1
     for y in range(1, len(grid)):
         p1, p2 = p1_start, p2_start
@@ -62,8 +61,6 @@ def main():
             if i == 0 or i == len(grid[0])-1 or j == 0 or j == len(grid)-1:
                 mask[i][j] = 1
 
-    # for line in mask:
-    #     print(line)
     print(sum(sum(np.asarray(mask))))
 
 if __name__ == "__main__":
